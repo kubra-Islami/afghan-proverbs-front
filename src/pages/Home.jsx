@@ -42,7 +42,7 @@ const Home = () => {
             {loading ? (
                 <CustomSpinner/>
             ) : (
-                <div className="d-flex flex-wrap gap-4 justify-content-between " style={{marginBottom: "6rem"}}>
+                <div className="d-flex flex-wrap gap-4 justify-content-between" style={{marginBottom: "6rem",marginTop: "6rem"}}>
                     {proverbs.map((proverb, index) => (
                         <div key={proverb.id} className="card shadow-sm card-proverb">
                             <div className="card-body">

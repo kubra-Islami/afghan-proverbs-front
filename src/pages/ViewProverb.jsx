@@ -103,7 +103,7 @@ const ViewProverb = () => {
             {showAlert && (
                 <div style={{
                     position: 'fixed',
-                    top: '30px',
+                    top: '2rem',
                     right: '20px',
                     zIndex: 1050, // higher than modal
                     minWidth: '300px'
@@ -235,7 +235,7 @@ const ViewProverb = () => {
                         <Modal.Title>Delete Proverb</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        Are you sue deleting this Proverb?
+                        Are you sure deleting this Proverb?
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="danger" onClick={onDelete} >
