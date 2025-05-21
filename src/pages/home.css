@@ -1,0 +1,17 @@
+.card-proverb{
+    width: 26rem;
+}
+
+
+@media (width <= 1400px) {
+    .card-proverb{
+        width: 33rem !important;
+    }
+}
+
+@media (width <= 1200px) {
+    .card-proverb{
+        width: 100% !important;
+    }
+
+}
