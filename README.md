@@ -1,4 +1,4 @@
-# 🇦🇫 Afghan Proverbs & Sayings – Frontend Application
+# Afghan Proverbs & Sayings – Frontend Application
 
 A frontend web application for managing and exploring traditional Afghan proverbs in Dari, Pashto, and English. This application connects to a RESTful API and allows users to **view**, **add**, and **read full details** of proverbs. Built using React, it features a responsive design, loading indicators, and intuitive navigation.
 
@@ -94,14 +94,14 @@ Go to: http://localhost:5173
 
 
 ### 🔹 AddProverb
-![AddProverb](src/img/screenshots/add-proverb)
+![AddProverb](src/img/screenshots/add-proverb.png)
 
 
 ### 🔹 EditProverb
-![EditProverb](src/img/screenshots/edit-proverb)
+![EditProverb](src/img/screenshots/edit-proverb.png)
 
 ### 🔹 DeleteProverb
-![DeleteProverb](src/img/screenshots/delete-proverb)
+![DeleteProverb](src/img/screenshots/delete-proverb.png)
 
 ### 🔹 ProverbDetails
-![ProverbDetails](src/img/screenshots/single-proverb)
+![ProverbDetails](src/img/screenshots/single-proverb.png)
