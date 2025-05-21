@@ -87,4 +87,9 @@ npm run dev
 
 Go to: http://localhost:5173
 
-## 📸 Screenshot
+## 📸 Screenshots
+
+### 🔹 Homepage
+![Homepage](../img/screenshots/homepage.png)
+
+
