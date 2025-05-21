@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 const NavbarSection = () => {
     return (
-        <Navbar expand="lg" className="bg-primary-subtle">
+        <Navbar expand="lg" className="bg-primary-subtle h-100">
             <Container>
                 <Navbar.Brand href="/">Afghan Proverbs </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

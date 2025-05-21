@@ -8,25 +8,20 @@ import "./home.css";
 const Home = () => {
     const [proverbs, setProverbs] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
-    const getAllProverbs = () => {
+    const getAllProverbs = async () => {
         try {
-            axios.get("/proverbs").then((response) => {
-                const proverbs = response.data;
-                setProverbs(proverbs);
-                console.log(loading);
-                setLoading(false);
-            })
-                .catch((err) => {
-                    console.error("Error fetching proverbs:", err);
-                    setLoading(true);
-                });
+            const response = await axios.get("/proverbs");
+            setProverbs(response.data);
+            setError(false);
         } catch (err) {
             console.error("Error fetching proverbs:", err);
-            console.log(loading);
-            setLoading(true);
+            setError(true);
+        } finally {
+            setLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
         getAllProverbs();
@@ -41,6 +36,11 @@ const Home = () => {
 
             {loading ? (
                 <CustomSpinner/>
+            ) : error ? (
+                <div className="text-center mt-5">
+                    <h4 className="text-danger">⚠️ Unable to fetch proverbs</h4>
+                    <p>Please check your internet connection or try again later.</p>
+                </div>
             ) : (
                 <div className="d-flex flex-wrap gap-4 justify-content-between" style={{marginBottom: "6rem",marginTop: "6rem"}}>
                     {proverbs.map((proverb, index) => (

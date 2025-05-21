@@ -121,10 +121,10 @@ const ViewProverb = () => {
 
             )}
 
-            <Container className='mt-5 text-center d-flex justify-content-center'>
+            <Container className="d-flex align-items-center justify-content-center min-vh-100">
 
                 {loading ? <CustomSpinner/> :
-                    <Card className="shadow border-0 p-4 w-100" style={{maxWidth: "600px"}}>
+                    <Card className="shadow border-0 p-4 w-100" style={{maxWidth: "800px",maxHeight:"500px"}}>
                         <Card.Body>
                             <h3 className="mb-3 text-center text-primary">{proverb?.textDari}</h3>
 
@@ -214,10 +214,10 @@ const ViewProverb = () => {
                             <CategorySelector register={register} />
 
                             <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>
+                                <Button variant="danger" onClick={handleClose}>
                                     Close
                                 </Button>
-                                <Button variant="primary" type='submit'>
+                                <Button variant="success" type='submit'>
                                     Save Changes
                                 </Button>
                             </Modal.Footer>
@@ -230,19 +230,25 @@ const ViewProverb = () => {
                     show={deleteShow}
                     onHide={handleDeleteClose}
                     centered
+                    size="md"
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Delete Proverb</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        Are you sure deleting this Proverb?
+                        <p style={{fontSize:"18px"}}>
+                            Are you sure deleting this Proverb?
+                        </p>
                     </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="danger" onClick={onDelete} >
+                    {/*<Modal.Footer>*/}
+                    <div className='d-flex justify-content-start mb-3 mx-3'>
+                        <Button variant="success" className='btn-sm w-50 me-2' onClick={onDelete} >
                             Yes
                         </Button>
-                        <Button variant="primary" onClick={handleDeleteClose}>No</Button>
-                    </Modal.Footer>
+                        <Button variant="danger" className='btn-sm w-50 ms-2' onClick={handleDeleteClose}>No</Button>
+                    </div>
+
+                    {/*</Modal.Footer>*/}
                 </Modal>
             </Container>
         </>
