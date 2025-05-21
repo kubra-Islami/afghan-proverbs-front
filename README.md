@@ -90,6 +90,6 @@ Go to: http://localhost:5173
 ## 📸 Screenshots
 
 ### 🔹 Homepage
-![Homepage](../img/screenshots/homepage.png)
+![Homepage](src/img/screenshots/homepage.png)
 
 
