@@ -93,3 +93,15 @@ Go to: http://localhost:5173
 ![Homepage](src/img/screenshots/homepage.png)
 
 
+### 🔹 AddProverb
+![AddProverb](src/img/screenshots/add-proverb)
+
+
+### 🔹 EditProverb
+![EditProverb](src/img/screenshots/edit-proverb)
+
+### 🔹 DeleteProverb
+![DeleteProverb](src/img/screenshots/delete-proverb)
+
+### 🔹 ProverbDetails
+![ProverbDetails](src/img/screenshots/single-proverb)
