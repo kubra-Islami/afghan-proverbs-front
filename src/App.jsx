@@ -14,7 +14,6 @@ function App() {
             <Route path="/" element={<Home/>}/>
             <Route path="/add-proverb" element={<AddProverb/>}/>
             <Route path="/view-proverb/:id" element={<ViewProverb />} />
-
             <Route path="*" element={<NotFound />} />
         </Routes>
     </>

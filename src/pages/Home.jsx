@@ -55,7 +55,7 @@ const Home = () => {
                         {
                             proverbs.map((proverb) => (
                                 <tr key={proverb.id}>
-                                    <td>{num + 1}</td>
+                                    <td>{proverb.id}</td>
                                     <td>{proverb.textDari}</td>
                                     <td>{proverb.textPashto}</td>
                                     <td>{proverb.translationEn}</td>
