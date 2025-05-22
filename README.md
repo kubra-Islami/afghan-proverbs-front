@@ -87,6 +87,29 @@ npm run dev
 
 Go to: http://localhost:5173
 
+---
+
+## 🧩 Features to Implement
+
+| Feature | Status |
+|--------|--------|
+| Filter proverbs by category (/proverbs?category=...) | ❌ Not yet implemented |
+| Display a random proverb (/proverbs/random) | ❌ Not yet implemented |
+| Search bar to filter proverbs by keyword | ❌ Not yet implemented |
+| Display multiple categories per proverb (as tags) | ❌ Not yet implemented |
+
+---
+### 🛠 Tech Stack
+
+- **React** (with Vite)
+- **React Router**
+- **React Bootstrap** (for UI components)
+- **Axios** (for HTTP requests)
+- **React Toastify** (for alerts, toasts)
+- **Bootstrap CSS**
+- **JavaScript (ES6+)**
+
+
 ## 📸 Screenshots
 
 ### 🔹 Homepage
@@ -105,3 +128,10 @@ Go to: http://localhost:5173
 
 ### 🔹 ProverbDetails
 ![ProverbDetails](src/img/screenshots/single-proverb.png)
+
+
+## 📫 Author
+### Kubra Islami
+#### ⚙️Freelance Web Developer
+
+
