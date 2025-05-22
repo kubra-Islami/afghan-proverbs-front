@@ -1,17 +1,28 @@
-.card-proverb{
+.card-proverb {
     width: 26rem;
 }
 
 
 @media (width <= 1400px) {
-    .card-proverb{
+    .card-proverb {
         width: 33rem !important;
     }
 }
 
 @media (width <= 1200px) {
-    .card-proverb{
+    .card-proverb {
         width: 100% !important;
     }
 
+}
+
+html {
+    background-color: whitesmoke
+
+}
+
+.navbar-nav a:hover {
+    background-color: rgba(245, 194, 107, 0.1);
+    color: #EE7A32 !important;
+    transition: all 0.3s ease-in-out;
 }

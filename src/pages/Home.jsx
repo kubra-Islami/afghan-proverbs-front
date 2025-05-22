@@ -1,8 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import {Link} from "react-router-dom";
-import CustomSpinner from "../components/CustomSpinner.jsx";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Badge from "react-bootstrap/Badge";
+import Button from "react-bootstrap/Button";
+import CustomSpinner from "../components/CustomSpinner";
 import "./home.css";
 
 const Home = () => {
@@ -28,54 +33,64 @@ const Home = () => {
     }, []);
 
     return (
-        <Container className="mt-5">
-            <h2 className="mb-4 text-center">📜 List of Afghan Proverbs</h2>
-            <p className="text-muted text-center">
-                Explore timeless Afghan wisdom in Dari, Pashto, and English.
+        <Container className="mt-5 mb-5">
+            <h2 className="text-center fw-bold mb-2">📚 Afghan Proverbs</h2>
+            <p className="text-center text-muted mb-5">
+                Discover meaningful Afghan wisdom in Dari, Pashto, and English.
             </p>
 
             {loading ? (
-                <CustomSpinner/>
+                <CustomSpinner />
             ) : error ? (
                 <div className="text-center mt-5">
                     <h4 className="text-danger">⚠️ Unable to fetch proverbs</h4>
                     <p>Please check your internet connection or try again later.</p>
                 </div>
             ) : (
-                <div className="d-flex flex-wrap gap-4 justify-content-between" style={{marginBottom: "6rem",marginTop: "6rem"}}>
+                <Row className="g-4">
                     {proverbs.map((proverb, index) => (
-                        <div key={proverb.id} className="card shadow-sm card-proverb">
-                            <div className="card-body">
-                                <h5 className="card-title mb-2">
-                                    #{index + 1} - {proverb.translationEn}
-                                </h5>
-                                <h6 className="card-subtitle mb-2 text-muted">
-                                    Category: <span className="badge bg-info text-dark">{proverb.category}</span>
-                                </h6>
-
-                                <div className="mb-2">
-                                    <strong>Dari:</strong> <span>{proverb.textDari}</span>
-                                </div>
-                                <div className="mb-2">
-                                    <strong>Pashto:</strong> <span>{proverb.textPashto}</span>
-                                </div>
-                                <div className="mb-5">
-                                    <strong>Meaning:</strong>
-                                    <p className="card-text">{proverb.meaning}</p>
+                        <Col key={proverb.id} xs={12} md={6} lg={4}>
+                            <Card className="h-100 shadow rounded-4 p-3 proverb-card">
+                                <div className="d-flex justify-content-between align-items-center mb-3">
+                                    <Badge className="text-capitalize">
+                                        {proverb.category}
+                                    </Badge>
+                                    <span className="text-muted small">#{index + 1}</span>
                                 </div>
 
-                                <Link to={`/view-proverb/${proverb.id}`}
-                                      className="btn btn-outline-primary btn-sm position-absolute mb-3 bottom-0">
-                                    View Details
-                                </Link>
-                            </div>
-                        </div>
+                                <Card.Body className="px-0">
+                                    <Card.Title className="fs-5 fw-semibold text-primary mb-3">
+                                        {proverb.translationEn}
+                                    </Card.Title>
+
+                                    <blockquote className="blockquote mb-3">
+                                        <p className="mb-1">
+                                            <strong>Dari:</strong> {proverb.textDari}
+                                        </p>
+                                        <p className="mb-1">
+                                            <strong>Pashto:</strong> {proverb.textPashto}
+                                        </p>
+                                    </blockquote>
+
+                                    <Card.Text className="fst-italic text-muted mb-4" style={{ fontSize: "0.95rem" }}>
+                                        {proverb.meaning}
+                                    </Card.Text>
+
+                                    <div className="d-grid">
+                                        <Link to={`/view-proverb/${proverb.id}`}>
+                                            <Button variant="outline-primary " className='btn btn-outline-primary btn-sm position-absolute mb-3 bottom-0' size="sm">
+                                                View Details
+                                            </Button>
+                                        </Link>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </Col>
                     ))}
-                </div>
+                </Row>
             )}
         </Container>
-
-    )
-}
+    );
+};
 
 export default Home;

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {Alert, Button, Card, Form, Modal} from "react-bootstrap";
+import {Alert, Button, Card, Form, Modal, Spinner} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import axios from "axios";
 import CustomSpinner from "../components/CustomSpinner.jsx";
@@ -18,7 +18,7 @@ const ViewProverb = () => {
     const handleClose = () => setShow(false);
     const handleDeleteClose = () => setDeleteShow(false);
 
-    const [alert, setAlert] = useState({ type: '', message: '' });
+    const [alert, setAlert] = useState({type: '', message: ''});
     const [showAlert, setShowAlert] = useState(false);
 
 
@@ -36,27 +36,27 @@ const ViewProverb = () => {
         await axios.put(`/proverbs/${id}`, data).then((response) => {
             setProverb(response.data);
             setShow(false);
-            setAlert({ type: 'success', message: 'Proverb edited successfully!' });
+            setAlert({type: 'success', message: 'Proverb edited successfully!'});
             setShowAlert(true);
             setTimeout(() => {
                 navigate(`/view-proverb/${id}`);
             }, 2000);
         })
-        .catch((err) => {
-            console.error("Error editing proverb:", err);
-            setAlert({ type: 'danger', message: 'Failed to edit proverb. Please try again.' });
-            setShowAlert(true);
-        })
-        .finally(() => {
-            setLoading(false); // end loading
-        });
+            .catch((err) => {
+                console.error("Error editing proverb:", err);
+                setAlert({type: 'danger', message: 'Failed to edit proverb. Please try again.'});
+                setShowAlert(true);
+            })
+            .finally(() => {
+                setLoading(false); // end loading
+            });
     };
 
     const onDelete = async () => {
         try {
             await axios.delete(`/proverbs/${id}`);
             reset();
-            setAlert({ type: 'success', message: 'Proverb deleted successfully!' });
+            setAlert({type: 'success', message: 'Proverb deleted successfully!'});
             setShowAlert(true);
             setTimeout(() => {
                 navigate('/');
@@ -64,9 +64,9 @@ const ViewProverb = () => {
 
         } catch (err) {
             console.error("Error deleting proverb:", err);
-            setAlert({ type: 'danger', message: 'Failed to delete proverb. Please try again.' });
+            setAlert({type: 'danger', message: 'Failed to delete proverb. Please try again.'});
             setShowAlert(true);
-        }    finally {
+        } finally {
             setLoading(false);
         }
     };
@@ -89,7 +89,7 @@ const ViewProverb = () => {
     }
 
     useEffect(() => {
-        setAlert({ type: '', message: '' });
+        setAlert({type: '', message: ''});
         setShowAlert(false);
         getProverb();
     }, []);
@@ -120,137 +120,156 @@ const ViewProverb = () => {
                 </div>
 
             )}
+            <div
+                style={{
+                    minHeight: "80vh",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: "2rem 1rem",
+                    backgroundColor: "#f8f9fa",
+                }}
+            >
+                <Container className="d-flex align-items-center justify-content-center">
 
-            <Container className="d-flex align-items-center justify-content-center min-vh-100">
+                    {loading ? <CustomSpinner/> :
+                        <Card className="shadow border-0 p-4 w-100" style={{maxWidth: "800px", maxHeight: "500px"}}>
+                            <Card.Body>
+                                <h3 className="mb-3 text-center text-primary">{proverb?.textDari}</h3>
 
-                {loading ? <CustomSpinner/> :
-                    <Card className="shadow border-0 p-4 w-100" style={{maxWidth: "800px",maxHeight:"500px"}}>
-                        <Card.Body>
-                            <h3 className="mb-3 text-center text-primary">{proverb?.textDari}</h3>
+                                <div className="mb-3">
+                                    <strong>Translation (English):</strong>
+                                    <p className="mb-0 text-muted">{proverb?.translationEn}</p>
+                                </div>
 
-                            <div className="mb-3">
-                                <strong>Translation (English):</strong>
-                                <p className="mb-0 text-muted">{proverb?.translationEn}</p>
-                            </div>
+                                <div className="mb-3">
+                                    <strong>Pashto:</strong>
+                                    <p className="mb-0 text-muted">{proverb?.textPashto}</p>
+                                </div>
 
-                            <div className="mb-3">
-                                <strong>Pashto:</strong>
-                                <p className="mb-0 text-muted">{proverb?.textPashto}</p>
-                            </div>
+                                <div className="mb-3">
+                                    <strong>Meaning:</strong>
+                                    <p className="mb-0">{proverb?.meaning}</p>
+                                </div>
 
-                            <div className="mb-3">
-                                <strong>Meaning:</strong>
-                                <p className="mb-0">{proverb?.meaning}</p>
-                            </div>
+                                <div className="mb-4">
+                                    <strong>Category:</strong>
+                                    <span className="badge bg-secondary ms-2">{proverb?.category}</span>
+                                </div>
 
-                            <div className="mb-4">
-                                <strong>Category:</strong>
-                                <span className="badge bg-secondary ms-2">{proverb?.category}</span>
-                            </div>
+                                <div className="d-flex justify-content-between">
+                                    <Link to="/">
+                                        <Button variant="primary">← Back</Button>
+                                    </Link>
+                                    <Button variant="outline-warning" onClick={handleShow}>Edit</Button>
+                                    <Button variant="outline-danger" onClick={() => setDeleteShow(true)}>Delete</Button>
+                                </div>
+                            </Card.Body>
+                        </Card>
+                    }
+                    <Modal show={show} onHide={handleClose}
+                           size="lg"
+                           aria-labelledby="contained-modal-title-vcenter"
+                           centered>
+                        <Modal.Header closeButton>
+                            <Modal.Title className=''>Edit Proverb</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form onSubmit={handleSubmit(onEdit)}>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>textDari</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        {...register("textDari", {required: "textDari is required"})}
+                                        isInvalid={!!errors.textDari}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.textDari?.message}
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>translationEn</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        {...register("translationEn", {required: "translationEn is required"})}
+                                        isInvalid={!!errors.translationEn}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.translationEn?.message}
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>textPashto</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        {...register("textPashto", {required: "textPashto is required"})}
+                                        isInvalid={!!errors.textPashto}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.textPashto?.message}
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>meaning</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={3}
+                                        {...register("meaning", {required: "Meaning is required"})}
+                                        isInvalid={!!errors.meaning}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.meaning?.message}
+                                    </Form.Control.Feedback>
+                                </Form.Group>
+                                <CategorySelector register={register}/>
 
-                            <div className="d-flex justify-content-between">
-                                <Link to="/">
-                                    <Button variant="primary">← Back</Button>
-                                </Link>
-                                <Button variant="outline-warning" onClick={handleShow}>Edit</Button>
-                                <Button variant="outline-danger" onClick={()=>setDeleteShow(true)}>Delete</Button>
-                            </div>
-                        </Card.Body>
-                    </Card>
-                }
-                <Modal show={show} onHide={handleClose}
-                       size="lg"
-                       aria-labelledby="contained-modal-title-vcenter"
-                       centered>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Edit Proverb</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form onSubmit={handleSubmit(onEdit)}>
-                            <Form.Group className="mb-3">
-                                <Form.Label>textDari</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    {...register("textDari", {required: "textDari is required"})}
-                                    isInvalid={!!errors.textDari}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.textDari?.message}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>translationEn</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    {...register("translationEn", {required: "translationEn is required"})}
-                                    isInvalid={!!errors.translationEn}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.translationEn?.message}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>textPashto</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    {...register("textPashto", {required: "textPashto is required"})}
-                                    isInvalid={!!errors.textPashto}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.textPashto?.message}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <Form.Group className="mb-3">
-                                <Form.Label>meaning</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    {...register("meaning", {required: "meaning is required"})}
-                                    isInvalid={!!errors.meaning}
-                                />
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.meaning?.message}
-                                </Form.Control.Feedback>
-                            </Form.Group>
-                            <CategorySelector register={register} />
+                                <Modal.Footer>
+                                    <Button variant="outline-danger" onClick={handleClose}>
+                                        Close
+                                    </Button>
+                                    <Button variant="success" type="submit" disabled={loading}>
+                                        {loading ? (
+                                            <>
+                                                <Spinner animation="border" size="sm" className="me-2"/>
+                                                Saving...
+                                            </>
+                                        ) : (
+                                            "Save Changes"
+                                        )}
+                                    </Button>
+                                </Modal.Footer>
+                            </Form>
+                        </Modal.Body>
 
-                            <Modal.Footer>
-                                <Button variant="danger" onClick={handleClose}>
-                                    Close
-                                </Button>
-                                <Button variant="success" type='submit'>
-                                    Save Changes
-                                </Button>
-                            </Modal.Footer>
-                        </Form>
-                    </Modal.Body>
+                    </Modal>
 
-                </Modal>
+                    <Modal
+                        show={deleteShow}
+                        onHide={handleDeleteClose}
+                        centered
+                        size="md"
+                    >
+                        <Modal.Header closeButton>
+                            <Modal.Title>Delete Proverb</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <p style={{fontSize: "18px"}}>
+                                Are you sure deleting this Proverb?
+                            </p>
+                        </Modal.Body>
+                        {/*<Modal.Footer>*/}
+                        <div className='d-flex justify-content-start mb-3 mx-3'>
+                            <Button variant="success" className='btn-sm w-50 me-2' onClick={onDelete}>
+                                Yes
+                            </Button>
+                            <Button variant="danger" className='btn-sm w-50 ms-2'
+                                    onClick={handleDeleteClose}>No</Button>
+                        </div>
 
-                <Modal
-                    show={deleteShow}
-                    onHide={handleDeleteClose}
-                    centered
-                    size="md"
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title>Delete Proverb</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p style={{fontSize:"18px"}}>
-                            Are you sure deleting this Proverb?
-                        </p>
-                    </Modal.Body>
-                    {/*<Modal.Footer>*/}
-                    <div className='d-flex justify-content-start mb-3 mx-3'>
-                        <Button variant="success" className='btn-sm w-50 me-2' onClick={onDelete} >
-                            Yes
-                        </Button>
-                        <Button variant="danger" className='btn-sm w-50 ms-2' onClick={handleDeleteClose}>No</Button>
-                    </div>
-
-                    {/*</Modal.Footer>*/}
-                </Modal>
-            </Container>
+                        {/*</Modal.Footer>*/}
+                    </Modal>
+                </Container>
+            </div>
         </>
 
     )

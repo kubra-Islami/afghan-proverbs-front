@@ -27,7 +27,7 @@ const AddProverb = () => {
     const onAddProverb = async (data) => {
         setLoading(true);
         try {
-            const response = await axios.post("/proverbs", data);
+            await axios.post("/proverbs", data);
             reset();
             setAlert({ type: "success", message: "✅ Proverb added successfully!" });
             setShowAlert(true);
@@ -69,13 +69,19 @@ const AddProverb = () => {
                 </div>
             )}
 
-            {/* Form Layout */}
-            <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
-                <Container
-                    className="shadow p-5 rounded bg-white"
-                    style={{ maxWidth: "700px", width: "100%" }}
-                >
-                    <h2 className="text-center text-info mb-4">📜 Add New Afghan Proverb</h2>
+            {/* Centered Form Wrapper */}
+            <div
+                style={{
+                    minHeight: "80vh",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: "2rem 1rem",
+                    backgroundColor: "#f8f9fa",
+                }}
+            >
+                <Container className="bg-white p-5 rounded shadow" style={{ maxWidth: "700px" }}>
+                    <h2 className="text-center text-primary mb-4">📜 Add New Afghan Proverb</h2>
 
                     <Form onSubmit={handleSubmit(onAddProverb)}>
                         <Form.Group className="mb-3">
@@ -137,13 +143,13 @@ const AddProverb = () => {
 
                         <div className="d-flex justify-content-end gap-3 mt-4">
                             <Button
-                                variant="outline-secondary"
+                                variant="outline-danger"
                                 onClick={() => reset()}
                                 disabled={loading}
                             >
                                 Clear
                             </Button>
-                            <Button variant="info" type="submit" disabled={loading}>
+                            <Button variant="success" type="submit" disabled={loading}>
                                 {loading ? (
                                     <>
                                         <Spinner animation="border" size="sm" className="me-2" />

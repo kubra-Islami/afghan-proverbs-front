@@ -1,0 +1,61 @@
+/* HOME COMPONENT STYLES */
+.proverb-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.2rem;
+    position: relative;
+}
+
+.proverb-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.blockquote {
+    font-size: 0.95rem;
+    padding-left: 0.75rem;
+    border-left: 4px solid #0d6efd30;
+    margin-top: 1rem;
+}
+
+.badge {
+    background-color: #f5c26b !important;
+    color: #2b2b2b;
+    font-weight: 500;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.75rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    text-transform: capitalize;
+}
+
+.proverb-card .btn {
+    margin-top: auto;
+    position: relative;
+}
+
+.proverb-card .btn:hover {
+    background-color: #0d6efd;
+    color: #fff;
+}
+.logo{
+    color: #EE7A32 !important;
+}
+
+/* FOOTER COMPONENT STYLES */
+footer {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+footer a:hover {
+    color: #EE7A32 !important;
+    transition: color 0.3s ease;
+}
+
