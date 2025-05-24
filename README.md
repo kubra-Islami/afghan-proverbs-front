@@ -127,8 +127,10 @@ Go to: http://localhost:5173
 ![DeleteProverb](src/img/screenshots/delete-proverb.png)
 
 ### 🔹 ProverbDetails
-![ProverbDetails](src/img/screenshots/single-proverb.png)
+![SigleProverb](src/img/screenshots/single-proverbs.png)
 
+### 🔹 NotFound
+![NotFound](src/img/screenshots/not-found.png)
 
 ## 📫 Author
 ### Kubra Islami
