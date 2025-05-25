@@ -130,7 +130,7 @@ Go to: http://localhost:5173
 ![SigleProverb](src/img/screenshots/single-proverbs.png)
 
 ### 🔹 NotFound
-![NotFound](src/img/screenshots/not-found.png)
+![NotFound](src/img/screenshots/notFound.png)
 
 ## 📫 Author
 ### Kubra Islami
