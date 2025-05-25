@@ -8,9 +8,11 @@ import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import CustomSpinner from "../components/CustomSpinner";
+import { useOnlineStatus } from "../contexts/OnlineStatusContext"; // ✅ Import context
 import "./home.css";
 
-const Home = ({ isOnline }) => {
+const Home = () => {
+    const isOnline = useOnlineStatus(); // ✅ Use context
     const [proverbs, setProverbs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -32,7 +34,7 @@ const Home = ({ isOnline }) => {
         if (isOnline) {
             getAllProverbs();
         } else {
-            setLoading(false); // Stop spinner if offline
+            setLoading(false);
         }
     }, [isOnline]);
 
@@ -107,8 +109,6 @@ const Home = ({ isOnline }) => {
             )}
         </Container>
     );
-
-
 };
 
 export default Home;

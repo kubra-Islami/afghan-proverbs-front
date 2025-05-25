@@ -1,9 +1,11 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import {useOnlineStatus} from "../contexts/OnlineStatusContext.jsx";
 
-const ProtectedRoute = ({ isOnline, children }) => {
+const ProtectedRoute = ({ children }) => {
+    const isOnline = useOnlineStatus();
+
     if (!isOnline) {
-        // Redirect to home or show a blank screen
         return <Navigate to="/" replace />;
     }
 

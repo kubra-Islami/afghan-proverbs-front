@@ -2,6 +2,7 @@ import React from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { Link } from "react-router-dom";
 
 const NavbarSection = () => {
     return (
@@ -20,11 +21,13 @@ const NavbarSection = () => {
                             Home
                         </Nav.Link>
                         <Nav.Link
-                            href="/add-proverb"
+                            as={Link}
+                            to="/add-proverb"
                             className="px-3 py-2 rounded text-dark fw-medium hover-effect"
                         >
                             Add a Proverb
                         </Nav.Link>
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>
