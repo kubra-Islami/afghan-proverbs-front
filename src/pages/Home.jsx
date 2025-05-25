@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,7 +8,7 @@ import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import CustomSpinner from "../components/CustomSpinner";
-import { useOnlineStatus } from "../contexts/OnlineStatusContext"; // ✅ Import context
+import {useOnlineStatus} from "../contexts/OnlineStatusContext"; // ✅ Import context
 import "./home.css";
 
 const Home = () => {
@@ -19,7 +19,7 @@ const Home = () => {
 
     const getAllProverbs = async () => {
         try {
-            const response = await axios.get("/proverbs");
+            const response = await axios.get("http://localhost:3000/proverbs");
             setProverbs(response.data);
             setError(false);
         } catch (err) {
@@ -28,7 +28,8 @@ const Home = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }
+
 
     useEffect(() => {
         if (isOnline) {
@@ -41,7 +42,7 @@ const Home = () => {
     return (
         <Container className="mt-5 mb-5">
             {loading ? (
-                <CustomSpinner />
+                <CustomSpinner/>
             ) : error ? (
                 <p className="text-danger text-center">
                     Failed to load proverbs. Please try again later.
@@ -84,7 +85,7 @@ const Home = () => {
 
                                         <Card.Text
                                             className="fst-italic text-muted mb-4"
-                                            style={{ fontSize: "0.95rem" }}
+                                            style={{fontSize: "0.95rem"}}
                                         >
                                             {proverb.meaning}
                                         </Card.Text>

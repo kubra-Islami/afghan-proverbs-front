@@ -2,10 +2,11 @@ import React, {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {Alert, Button, Card, Form, Modal, Spinner} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
-import axios from "axios";
 import CustomSpinner from "../components/CustomSpinner.jsx";
 import CategorySelector from "../components/CategorySelector.jsx";
 import {useForm} from "react-hook-form";
+import api from "../Api/api.jsx";
+
 
 const ViewProverb = () => {
     const {id} = useParams();
@@ -33,38 +34,37 @@ const ViewProverb = () => {
 
     const onEdit = async (data) => {
         setLoading(true);
-        await axios.put(`/proverbs/${id}`, data).then((response) => {
+        try {
+            const response = await api.put(`http://localhost:3000/proverbs/${id}`, data);
             setProverb(response.data);
             setShow(false);
-            setAlert({type: 'success', message: 'Proverb edited successfully!'});
+            setAlert({ type: 'success', message: 'Proverb edited successfully!' });
             setShowAlert(true);
             setTimeout(() => {
                 navigate(`/view-proverb/${id}`);
             }, 2000);
-        })
-            .catch((err) => {
-                console.error("Error editing proverb:", err);
-                setAlert({type: 'danger', message: 'Failed to edit proverb. Please try again.'});
-                setShowAlert(true);
-            })
-            .finally(() => {
-                setLoading(false); // end loading
-            });
+        } catch (err) {
+            console.error("Error editing proverb:", err);
+            setAlert({ type: 'danger', message: 'Failed to edit proverb. Please try again.' });
+            setShowAlert(true);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const onDelete = async () => {
+        setLoading(true);
         try {
-            await axios.delete(`/proverbs/${id}`);
+            await api.delete(`/proverbs/${id}`);
             reset();
-            setAlert({type: 'success', message: 'Proverb deleted successfully!'});
+            setAlert({ type: 'success', message: 'Proverb deleted successfully!' });
             setShowAlert(true);
             setTimeout(() => {
                 navigate('/');
             }, 2000);
-
         } catch (err) {
             console.error("Error deleting proverb:", err);
-            setAlert({type: 'danger', message: 'Failed to delete proverb. Please try again.'});
+            setAlert({ type: 'danger', message: 'Failed to delete proverb. Please try again.' });
             setShowAlert(true);
         } finally {
             setLoading(false);
@@ -74,10 +74,11 @@ const ViewProverb = () => {
     const getProverb = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`/proverbs/${id}`);
+            const response = await api.get(`http://localhost:3000/proverbs/${id}`);
             setProverb(response.data);
+            console.log(response.data)
         } catch (err) {
-            console.error("Error fetching proverbs:", err);
+            console.error("Error fetching proverb:", err);
         } finally {
             setLoading(false);
         }

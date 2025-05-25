@@ -8,8 +8,8 @@ import {
 } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import CategorySelector from "../components/CategorySelector.jsx";
+import api from "../Api/api.jsx";
 
 const AddProverb = () => {
     const [alert, setAlert] = useState({ type: "", message: "" });
@@ -27,7 +27,7 @@ const AddProverb = () => {
     const onAddProverb = async (data) => {
         setLoading(true);
         try {
-            await axios.post("/proverbs", data);
+            await api.post("http://localhost:3000/proverbs", data);
             reset();
             setAlert({ type: "success", message: "✅ Proverb added successfully!" });
             setShowAlert(true);
