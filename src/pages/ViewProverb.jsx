@@ -32,58 +32,6 @@ const ViewProverb = () => {
 
     const navigate = useNavigate();
 
-    // const onEdit = async (data) => {
-    //     setLoading(true);
-    //     try {
-    //         const response = await api.put(`http://localhost:3000/proverbs/${id}`, data);
-    //         setProverb(response.data);
-    //         setShow(false);
-    //         setAlert({ type: 'success', message: 'Proverb edited successfully!' });
-    //         setShowAlert(true);
-    //         setTimeout(() => {
-    //             navigate(`/view-proverb/${id}`);
-    //         }, 2000);
-    //     } catch (err) {
-    //         console.error("Error editing proverb:", err);
-    //         setAlert({ type: 'danger', message: 'Failed to edit proverb. Please try again.' });
-    //         setShowAlert(true);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
-    //
-    // const onDelete = async () => {
-    //     setLoading(true);
-    //     try {
-    //         await api.delete(`/proverbs/${id}`);
-    //         reset();
-    //         setAlert({ type: 'success', message: 'Proverb deleted successfully!' });
-    //         setShowAlert(true);
-    //         setTimeout(() => {
-    //             navigate('/');
-    //         }, 2000);
-    //     } catch (err) {
-    //         console.error("Error deleting proverb:", err);
-    //         setAlert({ type: 'danger', message: 'Failed to delete proverb. Please try again.' });
-    //         setShowAlert(true);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
-    //
-    // const getProverb = async () => {
-    //     setLoading(true);
-    //     try {
-    //         const response = await api.get(`http://localhost:3000/proverbs/${id}`);
-    //         setProverb(response.data);
-    //         console.log(response.data)
-    //     } catch (err) {
-    //         console.error("Error fetching proverb:", err);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
-
     const onEdit = async (data) => {
         setLoading(true);
         try {
