@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axios from "axios";
+// import axios from "axios";
 import {Link} from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -8,8 +8,10 @@ import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import CustomSpinner from "../components/CustomSpinner";
-import {useOnlineStatus} from "../contexts/OnlineStatusContext"; // ✅ Import context
+import {useOnlineStatus} from "../contexts/OnlineStatusContext";
+import api from "../Api/api.jsx";
 import "./home.css";
+
 
 const Home = () => {
     const isOnline = useOnlineStatus(); // ✅ Use context
@@ -17,9 +19,23 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
+    // const getAllProverbs = async () => {
+    //     try {
+    //         const response = await axios.get("http://localhost:3000/proverbs");
+    //         setProverbs(response.data);
+    //         setError(false);
+    //     } catch (err) {
+    //         console.error("Error fetching proverbs:", err);
+    //         setError(true);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // }
+
     const getAllProverbs = async () => {
+        setLoading(true);
         try {
-            const response = await axios.get("http://localhost:3000/proverbs");
+            const response = await api.get(`/proverbs`);
             setProverbs(response.data);
             setError(false);
         } catch (err) {
@@ -28,7 +44,7 @@ const Home = () => {
         } finally {
             setLoading(false);
         }
-    }
+    };
 
 
     useEffect(() => {

@@ -6,7 +6,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/proverbs': 'http://localhost:3000',  // backend server
+      '/proverbs': {
+        target: 'https://afghan-proverbs-api-kysw.onrender.com',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/proverbs/, ''),
+      },
     },
   },
 })
