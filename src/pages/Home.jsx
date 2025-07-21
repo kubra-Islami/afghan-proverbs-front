@@ -13,7 +13,7 @@ import "./home.css";
 
 
 const Home = () => {
-    const isOnline = useOnlineStatus(); // ✅ Use context
+    const isOnline = useOnlineStatus();
     const [proverbs, setProverbs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
