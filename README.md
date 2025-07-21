@@ -11,6 +11,13 @@ This app connects to a deployed backend:
 🔗 **[https://afghan-proverbs-api-kysw.onrender.com](https://afghan-proverbs-api-kysw.onrender.com)**
 
 ---
+## 🚀 Live Demo
+
+Check out the live version of the Afghan Proverbs app here:
+
+🔗 [Afghan Proverbs - Live Demo](https://afghan-proverbs-front-1.onrender.com/)
+
+---
 
 ## 🚀 Features
 
