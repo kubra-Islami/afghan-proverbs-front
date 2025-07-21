@@ -15,7 +15,7 @@ This app connects to a deployed backend:
 
 Check out the live version of the Afghan Proverbs app here:
 
-🔗 [Afghan Proverbs - Live Demo](https://afghan-proverbs-front-1.onrender.com/)
+🔗 [Afghan Proverbs - Live Demo](https://afghan-proverbs-front.vercel.app/)
 
 ---
 
