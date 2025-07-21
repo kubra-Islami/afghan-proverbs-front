@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-// import axios from "axios";
 import {Link} from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -18,19 +17,6 @@ const Home = () => {
     const [proverbs, setProverbs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-
-    // const getAllProverbs = async () => {
-    //     try {
-    //         const response = await axios.get("http://localhost:3000/proverbs");
-    //         setProverbs(response.data);
-    //         setError(false);
-    //     } catch (err) {
-    //         console.error("Error fetching proverbs:", err);
-    //         setError(true);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // }
 
     const getAllProverbs = async () => {
         setLoading(true);

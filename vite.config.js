@@ -9,7 +9,6 @@ export default defineConfig({
       '/proverbs': {
         target: 'https://afghan-proverbs-api-kysw.onrender.com',
         changeOrigin: true,
-        // rewrite: (path) => path.replace(/^\/proverbs/, ''),
       },
     },
   },

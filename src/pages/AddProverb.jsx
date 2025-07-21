@@ -24,22 +24,6 @@ const AddProverb = () => {
         formState: { errors },
     } = useForm();
 
-    // const onAddProverb = async (data) => {
-    //     setLoading(true);
-    //     try {
-    //         await api.post("http://localhost:3000/proverbs", data);
-    //         reset();
-    //         setAlert({ type: "success", message: "✅ Proverb added successfully!" });
-    //         setShowAlert(true);
-    //         setTimeout(() => navigate("/"), 2000);
-    //     } catch (err) {
-    //         console.error("Error adding proverb:", err);
-    //         setAlert({ type: "danger", message: "❌ Failed to add proverb. Please try again." });
-    //         setShowAlert(true);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
     const onAddProverb = async (data) => {
         setLoading(true);
         try {
